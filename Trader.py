@@ -1,5 +1,6 @@
 class Trader:
     def __init__(self,name,market,money=0,quantity=0,ask=20,bid=10):
+        super(Trader,self).__init__()
         self.name=name
         self.market=market
         self.money=money
@@ -7,6 +8,16 @@ class Trader:
         self.askPrice=ask #Price they are willing to sell at
         self.bidPrice=bid #Price they are willing to buy at
 
+    def data(self):
+        return {
+            'name': self.name,
+            #'type': str(type(self)),
+            'money': self.money,
+            'quantity': self.quantity,
+            'askPrice': self.askPrice,
+            'bidPrice': self.bidPrice,
+            }
+    
     def setMarket(self,market):
         self.market=market
         
@@ -22,7 +33,7 @@ class Trader:
 
     #Assume a transaction from A to B
     def transact(A,B,units,buy=None,sell=None):
-        if A.market is None or B.market is None or A.market != B.market:
+        if A.market is None or B.market is None or A.market.name != B.market.name:
             print("Wrong market; no sale.",A,B)
             return None
         buyPrice=(A.bidPrice-B.askPrice)/2 + B.askPrice

@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+import argparse
+from pymongo import MongoClient
+from getpass import getpass
+from Market import Market
+from Business import Business
+import yaml
+parser = argparse.ArgumentParser(description='Utility used to view the property of a business.')
+parser.add_argument('command', metavar='command', type=str, nargs=1, help="The command you want to execute. Either update or find")
+parser.add_argument('name', metavar='name', type=str, nargs='?', help="The name of a business.")
+args=parser.parse_args()
+
+
+if args.command[0] == 'find':
+    try:
+        Business.load(args.name).display()
+    except TypeError:
+        print("This business was not found. Please not the name is case sensitive.")
+elif args.command[0] == 'update':
+    myBusiness=Business.load(obj['name'])
+    myBusiness.askPrice=obj['askPrice']
+    myBusiness.bidPrice=obj['bidPrice']
+    myBusiness.save()
+    myBusiness.display()
+elif args.command[0] == 'transact':
+    print("loading businesses.")
+    myBusiness=Business.load(obj['name'])
+    theirBusiness=Business.load(args.name)
+    Business.transact(myBusiness,theirBusiness
+    

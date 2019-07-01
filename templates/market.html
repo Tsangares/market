@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Arvo|Lato|Literata|Montserrat|Raleway&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="/static/base.css">
+    <script src="/static/base.js"></script> 
+  </head>
+  <body>
+    <h1>{{market.name}} Market</h1>
+    <h3>Position</h3>
+    <div class="container" id="position">
+      <span>Longitute is {{market.position[0]}}</span><br>
+      <span>Latitude is {{market.position[1]}}</span><br>
+    </div>
+    <h3>Businesses</h3>
+    <div class="container">
+      {% for business in businesses %}
+      <fieldset class="business">
+	<legend>{{business.name}}</legend>
+	<div>
+	  <span>Money</span>
+	  <span>{{business.money}}</span>
+	</div>
+	<div>
+	  <span>Quantity</span>
+	  <span>{{business.money}}</span>
+	</div>
+	<div>
+	  <span>Bidding Price</span>
+	  <span>{{business.bidPrice}}</span>
+	</div>
+	<div>
+	  <span>Asking Price</span>
+	  <span>{{business.askPrice}}</span>
+	</div>
+      </fieldset>
+      {% endfor %}
+    </div>
+    <style>
+      body{
+	  background-color: #e4ffde;
+      }
+    </style>
+  </body>
+</html>

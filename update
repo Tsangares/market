@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+import argparse
+from pymongo import MongoClient
+from getpass import getpass
+from Market import Market
+from Business import Business
+from Profile import myBusiness as obj
+
+parser = argparse.ArgumentParser(description='Utility to update your profile. This must be run in order for your edits to the configuration file to take effect.')
+
+args=parser.parse_args()
+
+print("You are the Business: %s"%obj['name'])
+print("Updating your configuration.")
+myBusiness=Business.load(obj['name'])
+myBusiness.askPrice=obj['askPrice']
+myBusiness.bidPrice=obj['bidPrice']
+myBusiness.save()
+myBusiness.display()

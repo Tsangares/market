@@ -1,21 +1,40 @@
 from math import sqrt
-class Market:
+from db import marketdb
+from Saveable import Saveable
+from Business import Business
+_market=marketdb.market
+class Market(Saveable):
     def __init__(self,name,position=(0,0)):
+        super(Market,self).__init__()
         self.name=name
         self.businesses=[]
         self.position=position
+        self._id=Saveable.getId(name,_market)
 
+    def load(d):
+        d=Saveable.load(d,_market)
+        market=Market(d['name'],d['position'])
+        market._id=d['_id']
+        for business in d['businesses']:
+            Business.load(business,market)
+        return market
+    
+    def save(self):
+        for b in self.businesses: b.save()
+        super(Market,self).save(_market)
+
+    def data(self):
+        return {
+            'name': self.name,
+            'businesses': [b._id for b in self.businesses],
+            'position': self.position,
+        }
     def __repr__(self):
         return self.name
     
     def display(self):
         for business in self.businesses:
-            print("The business %s:"%business)
-            print("\tMoney: $%.02f"%business.money)
-            print("\tQuantity: %d"%business.quantity)
-            print("\tAsk,Bid: %.02f,%.02f"%(business.askPrice,business.bidPrice))
-            print("\tConvoys: ",business.convoys)
-            print("\n")
+            business.display()
 
     def getDistance(self,market):
         x=market.position[0]-self.position[0]

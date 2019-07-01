@@ -1,0 +1,49 @@
+html{
+    height: 100%;
+}
+body{
+    margin: 0;
+    height: inherit;
+    font-family: Montserrat;
+    margin: 2rem;
+}
+h3{
+    margin: 1rem;
+    left-margin: 3rem;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container>span{
+    margin: .5rem;
+}
+.business{
+    min-width: 33.3%;
+    padding: 1rem;
+    padding-top: 0;
+    padding-bottom: .75rem;
+    display: flex;
+    flex-direction: column;
+}
+.business>legend{
+    font-size: 150%;
+}
+.business>div{
+    background-color: rgba(0,0,0,.05);
+    display:flex;
+    justify-content: space-between;
+    padding: .25rem;
+    margin: .25rem;
+}
+#first>div{
+    color: rgba(0,0,0,.7);
+    text-align: center;
+}
+input{
+    text-align: center;
+    font-family: Arvo;
+    margin: .5rem;
+}
