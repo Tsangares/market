@@ -5,7 +5,7 @@ from getpass import getpass
 from Market import Market
 from Business import Business
 parser = argparse.ArgumentParser(description='Utility used to view the property of a market.')
-parser.add_argument('name', metavar='name', type=str, nargs=1, help="The name of a market.")
+parser.add_argument('name', metavar='name', type=str, nargs='*', help="The name of a market.")
 args=parser.parse_args()
 
-Market.load(args.name[0]).display()
+Market.load(' '.join(args.name)).display()

@@ -5,6 +5,7 @@ class Saveable:
     def load(d,db):
         obj=None
         if issubclass(str,type(d)):
+            d=d.title()
             obj=db.find_one({'name': d})
         elif issubclass(bson.objectid.ObjectId,type(d)):
             obj=db.find_one({'_id': d})
