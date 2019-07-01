@@ -20,4 +20,5 @@ if me is None or them is None:
 else:
     print(me,them)
     Business.transact(me,them,args.quantity[0])
-    me.market.save()
+    me.save()
+    them.save()
