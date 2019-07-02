@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+import sys
+sys.path.insert(0,'../src')
+
+import argparse
+from pymongo import MongoClient
+from getpass import getpass
+from Market import Market
+from Business import Business
+import yaml
+parser = argparse.ArgumentParser(description='Utility used to view the property of a business.')
+parser.add_argument('name', metavar='name', type=str, nargs=1, help="The name of a business.")
+args=parser.parse_args()
+try:
+    Business.load(args.name[0]).display()
+except TypeError:
+    print("This business was not found. Please not the name is case sensitive.")
+    

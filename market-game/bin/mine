@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+import sys
+sys.path.insert(0,'../src')
+
+import argparse
+from pymongo import MongoClient
+from getpass import getpass
+from Market import Market
+from Business import Business
+from Profile import myBusiness
+import time
+from numpy.random import normal
+parser = argparse.ArgumentParser(description='Utility used to make a trasaction between you and another business.')
+parser.add_argument('money', metavar='money', type=float, nargs=1, help="The name of a business you want to transact with.")
+#parser.add_argument('quantity', metavar='quantity', type=int, nargs=1, help="The number of units you want to buy/sell.")
+
+args=parser.parse_args()
+
+print("You are the Business: %s"%myBusiness['name'])
+me=Business.load(myBusiness['name'])
+
+maxTime=5
+minTime=1
+width=maxTime-minTime
+money=args.money[0]
+scale=(1-money/100)
+if scale > 1: scale=1
+if scale < 0: scale=0
+duration=normal(width*scale+minTime,2*(1-scale))
+steps=3
+print("Duration %.02f sec"%duration)
+for i in range(steps):
+    print("."*(i+1))
+    time.sleep(duration/steps)
+print("Added 1 to your profile.")
+me.quantity+=1
+me.save()
+me.display()

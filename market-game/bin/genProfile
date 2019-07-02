@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "name: Nike
+bidPrice: 10
+askPrice: 20" > profile.yaml

@@ -30,6 +30,13 @@ class Trader:
     def setAskPrice(self,price):
         self.askPrice=price
     
+    def spend(self,money):
+        if self.money-money < 0:
+            print("Cannot transact! Not enough money.")
+            return False
+        else:
+            self.money-=money
+            return True
 
     #Assume a transaction from A to B
     def transact(A,B,units,buy=None,sell=None):
@@ -43,7 +50,7 @@ class Trader:
         if (buy is None or buy is True) and not isOnlySell and A.bidPrice >= B.askPrice:
             #Sucessful purchase
             A.quantity+=units
-            A.money-=buyPrice*units
+            A.spend(buyPrice*units)
             B.quantity-=units
             B.money+=buyPrice*units
             print("Purchase succeeded between %s to %s at $%.02f with %s units"%(A.name,B.name,buyPrice,units))
@@ -53,7 +60,7 @@ class Trader:
             A.quantity-=units
             A.money+=sellPrice*units
             B.quantity+=units
-            B.money-=sellPrice*units
+            B.spend(sellPrice*units)
             print("Sale succeeded between %s to %s at $%.02f with %s units"%(A.name,B.name,sellPrice,units))
             return True
         else:
