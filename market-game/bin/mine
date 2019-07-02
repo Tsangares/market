@@ -12,27 +12,44 @@ import time
 from numpy.random import normal
 parser = argparse.ArgumentParser(description='Utility used to make a trasaction between you and another business.')
 parser.add_argument('money', metavar='money', type=float, nargs=1, help="The name of a business you want to transact with.")
-#parser.add_argument('quantity', metavar='quantity', type=int, nargs=1, help="The number of units you want to buy/sell.")
-
+parser.add_argument('-r','--repeat', dest='repeat', action='store_true')
 args=parser.parse_args()
 
 print("You are the Business: %s"%myBusiness['name'])
+print("Retreieving profile...")
 me=Business.load(myBusiness['name'])
 
-maxTime=5
-minTime=1
-width=maxTime-minTime
-money=args.money[0]
-scale=(1-money/100)
-if scale > 1: scale=1
-if scale < 0: scale=0
-duration=normal(width*scale+minTime,2*(1-scale))
-steps=3
-print("Duration %.02f sec"%duration)
-for i in range(steps):
-    print("."*(i+1))
-    time.sleep(duration/steps)
-print("Added 1 to your profile.")
-me.quantity+=1
-me.save()
-me.display()
+def mine():
+    maxTime=30
+    minTime=1
+    width=maxTime-minTime
+    money=args.money[0]
+    maxMoney=30
+    scale=(1-money/maxMoney)
+    if scale > 1: scale=1
+    if scale < 0: scale=0
+    duration=-1
+    while duration<minTime or duration>maxTime:
+        duration=normal(width*scale+minTime,scale)
+        #duration=width*scale+minTime
+    steps=3
+    print("Duration %.02f sec"%duration)
+    for i in range(steps):
+        print("."*(i+1))
+        time.sleep(duration/steps)
+    if money>maxMoney:
+        print("The most money you can spend on this is %s."%maxMoney)
+        money=maxMoney
+    print("Spend %s money."%money)
+    me.spend(money)
+    print("Added 1 to your profile.")
+    me.quantity+=1
+    me.save()
+
+if args.repeat:
+    while True:
+        mine()
+        print("Repeating!")
+else:
+    mine()
+    me.display()

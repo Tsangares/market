@@ -17,8 +17,8 @@ class Saveable:
         else: return None
     def data():
         return {'name': 'Aurther'}
-    def save(self,db,v=True):
+    def save(self,db,v=False):
         data=self.data()
         db.update({'name': self.name},{'$set': data},upsert=True)
         self._id=db.find_one({'name': self.name})['_id']
-        print("Successful save of",self)
+        if v: print("Successful save of",self)
