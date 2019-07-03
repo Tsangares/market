@@ -16,10 +16,14 @@
       </div>
       <form id="color-form" action="/canvas" method="post">
 	<input type='text' name="name" value="{{profile['name']}}" style="display:none"></input>
-	<input id="red" class="color" name="red" type='text' placeholder="% red"></input>
-	<input id="green" class="color" name="green" type='text' placeholder="% green"></input>
-	<input id="blue" class="color" name="blue" type='text' placeholder="% blue"></input>
+	<input id="x-value" type='text' name="x" style="display:none"></input>
+	<input id="y-value" type='text' name="y" style="display:none"></input>
+	<input required id="red" class="color" name="red" type='text' placeholder="% red"></input>
+	<input required id="green" class="color" name="green" type='text' placeholder="% green"></input>
+	<input required id="blue" class="color" name="blue" type='text' placeholder="% blue"></input>
+	{% if True %}
 	<input type="submit" value="Buy Pixel"></input>
+	{% endif %}
       </form>
     </div>
     {% endif %}
@@ -27,7 +31,7 @@
 	{% for i in x %}
 	<div class="row">
 	  {% for j in y %}
-	  {% set index=j + size*i %}
+	  {% set index=i + size*j %}
 	  {% set r,g,b = colors[index] %}
 	  <div class="column pixel" x="{{j}}" y="{{i}}" style="background-color: rgb({{r}},{{g}},{{b}})" >
 	  </div>

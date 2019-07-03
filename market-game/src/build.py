@@ -9,7 +9,7 @@ market=marketdb.market
 canvas=marketdb.canvas
 transactions=marketdb.canvas_transactions
 
-def setPoint(x,y,r,g,b):
+def setPoint(x,y,r,g,b,index=0):
     color={
         'x': x,
         'y': y,
@@ -18,10 +18,11 @@ def setPoint(x,y,r,g,b):
         'b': b,
     }
     return canvas.update_one({'x': x, 'y': y}, {'$set': color},upsert=True)
-    
+_index=0
 for i in range(100):
     for j in range(100):
-        print(i,j,setPoint(i,j,10,10,10))
+        _index+=1
+        print(i,j,setPoint(i,j,10,10,10,_index))
         
         
 '''

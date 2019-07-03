@@ -1,13 +1,11 @@
 $('.pixel').on('click', e=>{
-    console.log(e)
     pixel=$(e.currentTarget)
+    $('#x-value').val(pixel.attr('x'))
+    $('#y-value').val(pixel.attr('y'))
     $('#x-holder').text(pixel.attr('x'))
     $('#y-holder').text(pixel.attr('y'))
     $('#example-pixel').css('color','black')
-    //$('#color-picker').css('top',e.pageY)
-    //$('#color-picker').css('left',e.pageX)
-    //$('#color-picker').css('display','flex')
-    console.log(e.pageX,e.pageY)
+    //console.log(e.pageX,e.pageY)
 })
 $('.color').keyup(e=>{
     r=Math.floor(Number($('#red').val())/100*256).toString()
