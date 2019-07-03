@@ -10,16 +10,19 @@ with open('oracle.yaml', 'r') as f:
     questions=oracleQuestions
 
 question=random.choice(questions)
+question=questions[6]
 answer=input(question['prompt']+"\n")
 corret=None
-if issubclass(type(answer),str):
-    correct=answer.lower()==str(question['answer']).lower()
-else issubclass(type(answer),dict):
+correctAnswer=question['answer']
+if issubclass(type(correctAnswer),str):
+    correct=answer.lower()==correctAnswer.lower()
+elif issubclass(type(correctAnswer),dict):
     try:
-        correct=float(answer)==float(question['answer']['number'])
+        correct=float(answer)==float(correctAnswer['number'])
     except:
-        correct=str(answer)==str(question['answer']['string'])
-        
+        correct=str(answer)==str(correctAnswer['string'])
+else:
+    raise Exception("Problem with the oracle!")
 
 print("That is %s!\n"%str(correct).lower())
 if correct:
