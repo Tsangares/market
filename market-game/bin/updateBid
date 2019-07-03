@@ -7,16 +7,14 @@ from pymongo import MongoClient
 from getpass import getpass
 from Market import Market
 from Business import Business
-from Profile import myBusiness as obj
+from db import getProfile
 
 parser = argparse.ArgumentParser(description='Utility to update your profile. This must be run in order for your edits to the configuration file to take effect.')
-
+parser.add_argument('bidPrice', metavar='bidPrice', type=float, nargs=1, help="Use this utility to set your bid price, the highest amount you are willing to pay for.")
 args=parser.parse_args()
 
-print("You are the Business: %s"%obj['name'])
 print("Updating your configuration.")
-myBusiness=Business.load(obj['name'])
-myBusiness.askPrice=obj['askPrice']
-myBusiness.bidPrice=obj['bidPrice']
+myBusiness=getProfile()
+myBusiness.bidPrice=args.bidPrice[0]
 myBusiness.save()
 myBusiness.display()

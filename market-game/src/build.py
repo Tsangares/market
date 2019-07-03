@@ -6,11 +6,30 @@ client=MongoClient('mongodb+srv://sailor:O9d4*eBJkizk@cluster0-7aeh1.azure.mongo
 marketdb=client.market_test
 business=marketdb.business
 market=marketdb.market
+canvas=marketdb.canvas
+transactions=marketdb.canvas_transactions
 
+def setPoint(x,y,r,g,b):
+    color={
+        'x': x,
+        'y': y,
+        'r': r,
+        'g': g,
+        'b': b,
+    }
+    return canvas.update_one({'x': x, 'y': y}, {'$set': color},upsert=True)
+    
+for i in range(100):
+    for j in range(100):
+        print(i,j,setPoint(i,j,10,10,10))
+        
+        
+'''
 sc=Market("Santa Cruz", (5,0))
 nike=Business("Nike",sc,100,10)
 adidas=Business("Adidas",sc,77,33)
 sc.save()
+'''
 '''
 sc=Market('Santa Cruz',(1,3))
 sf=Market('San Francisco',(-2,7))

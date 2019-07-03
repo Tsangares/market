@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Arvo|Lato|Literata|Montserrat|Raleway&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="/static/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/canvas.css">
+    <script src="/static/jquery.js"></script> 
+  </head>
+  <body>
+    {% if me!=None and profile!=None%}
+    <div id="color-picker">
+      <span>Hello {{user['name']}}</span>
+      <span>You have {{profile['quantity']}} paint!</span>
+      <div id="example-pixel">
+	Selected Pixel at (<span id="x-holder"></span>,<span id="y-holder"></span>)
+      </div>
+      <form id="color-form" action="/canvas" method="post">
+	<input type='text' name="name" value="{{profile['name']}}" style="display:none"></input>
+	<input id="red" class="color" name="red" type='text' placeholder="% red"></input>
+	<input id="green" class="color" name="green" type='text' placeholder="% green"></input>
+	<input id="blue" class="color" name="blue" type='text' placeholder="% blue"></input>
+	<input type="submit" value="Buy Pixel"></input>
+      </form>
+    </div>
+    {% endif %}
+    <div id="myCanvas">
+	{% for i in x %}
+	<div class="row">
+	  {% for j in y %}
+	  {% set index=j + size*i %}
+	  {% set r,g,b = colors[index] %}
+	  <div class="column pixel" x="{{j}}" y="{{i}}" style="background-color: rgb({{r}},{{g}},{{b}})" >
+	  </div>
+	  {% endfor %}
+	</div>
+	{% endfor %}
+      </div>
+    <style>
+      body{
+	  margin: 0;
+	  background-color: white;
+      }
+    </style>
+    <script src="/static/canvas.js"></script> 
+  </body>
+</html>

@@ -1,0 +1,20 @@
+#!/usr/bin/env python
+import sys
+sys.path.insert(0,'../src')
+
+import argparse
+from pymongo import MongoClient
+from getpass import getpass
+from Market import Market
+from Business import Business
+from db import getProfile
+
+parser = argparse.ArgumentParser(description='Utility to update your profile. This must be run in order for your edits to the configuration file to take effect.')
+parser.add_argument('askPrice', metavar='askPrice', type=float, nargs=1, help="Use this utility to set your ask price, the highest amount you are willing to pay for.")
+args=parser.parse_args()
+
+print("Updating your configuration.")
+myBusiness=getProfile()
+myBusiness.askPrice=args.askPrice[0]
+myBusiness.save()
+myBusiness.display()
