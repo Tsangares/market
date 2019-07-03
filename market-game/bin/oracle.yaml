@@ -1,0 +1,10 @@
+- prompt: |
+    if 2+2=44
+    and 6+6=3612
+    then what is 12+12?
+  answer: 422
+  reward: 7
+- prompt: |
+    What is 2+2?
+  answer: 4
+  reward: 7

@@ -1,7 +1,6 @@
 from math import sqrt
 from db import marketdb
 from Saveable import Saveable
-from Business import Business
 _market=marketdb.market
 class Market(Saveable):
     def __init__(self,name,position=(0,0)):
@@ -12,6 +11,7 @@ class Market(Saveable):
         self._id=Saveable.getId(name,_market)
 
     def load(d):
+        from Business import Business
         d=Saveable.load(d,_market)
         market=Market(d['name'],d['position'])
         market._id=d['_id']
