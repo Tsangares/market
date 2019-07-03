@@ -11,7 +11,16 @@ with open('oracle.yaml', 'r') as f:
 
 question=random.choice(questions)
 answer=input(question['prompt']+"\n")
-correct= str(answer).lower()==str(question['answer']).lower()
+corret=None
+if issubclass(type(answer),str):
+    correct=answer.lower()==str(question['answer']).lower()
+else issubclass(type(answer),dict):
+    try:
+        correct=float(answer)==float(question['answer']['number'])
+    except:
+        correct=str(answer)==str(question['answer']['string'])
+        
+
 print("That is %s!\n"%str(correct).lower())
 if correct:
     me=getProfile()
