@@ -57,8 +57,46 @@
   reward: 1
 - prompt: |
     Word association: find a word that associates with the following sets of words.
-  answer:
-  reward:
+    Glasses, screen, day
+  answer: Sun
+  reward: 2
 - prompt: |
-  answer:
-  reward:
+    Word association: find a word that associates with the following sets of words.
+    Cream, cube, cap
+  answer: Ice
+  reward: 1
+- prompt: |
+    Word association: find a word that associates with the following sets of words.
+    Knife, fly, cup
+  answer: Butter
+  reward: 1
+- prompt: |
+    Divide 30 by ½ and add 10. What’s the answer?
+  answer: 70
+  reward: 3
+- prompt: |
+    Using only addition, how can you use eight eights to get the number 1,000?
+  answer: 888 +88 +8 +8 +8
+  reward: 3
+- prompt: |
+    What object has keys that open no locks, space but no room, and you can enter bbut not go in?
+  answer: Keyboard
+  reward: 2
+- prompt: |
+    A word I know, six letters it contains. Subtract just one, and twelve is what remains.
+  answer: Dozen
+  reward: 1
+- prompt: |
+   What is a five letter word which becomes shorter with two letters added onto its end?
+  answer: Short
+  reward: 1
+- prompt: |
+    If:
+    2 + 2 = 44
+    3 + 3 = 96
+    4 + 4 = 168
+    5 + 5 = 2510
+    Then:
+    6 + 6 = ?
+  answer: 3612
+  reward: 5
