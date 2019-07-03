@@ -11,7 +11,7 @@ with open('oracle.yaml', 'r') as f:
 
 question=random.choice(questions)
 answer=input(question['prompt']+"\n")
-correct= str(answer)==str(question['answer'])
+correct= str(answer).lower()==str(question['answer']).lower()
 print("That is %s!\n"%str(correct).lower())
 if correct:
     me=getProfile()
