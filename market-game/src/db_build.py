@@ -17,6 +17,6 @@ def buildCanvas(db,hue=10,size=50):
             _index+=1
             print(i,j,setPoint(db,i,j,hue,hue,hue,_index))
 canvas=marketdb.canvas
-buildCanvas(canvas,10)
+buildCanvas(canvas,70,25)
 
 

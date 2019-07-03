@@ -28,12 +28,11 @@
     </div>
     {% endif %}
     <div id="myCanvas">
-	{% for i in x %}
+	{% for j in y %}
 	<div class="row">
-	  {% for j in y %}
-	  {% set index=i + size*j %}
-	  {% set r,g,b = colors[index] %}
-	  <div class="column pixel" x="{{j}}" y="{{i}}" style="background-color: rgb({{r}},{{g}},{{b}})" >
+	  {% for i in x %}
+	  {% set r,g,b = colors[(i,j)] %}
+	  <div class="column pixel" x="{{i}}" y="{{j}}" style="background-color: rgb({{r}},{{g}},{{b}})" >
 	  </div>
 	  {% endfor %}
 	</div>

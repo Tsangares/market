@@ -45,16 +45,19 @@ def set_pixel():
 
 @app.route('/canvas', methods=['GET'])
 def get_canvas():
-    size=50
-    cs=sorted(css,key=lambda a: a['index'])
-    colors=[(c['r'],c['g'],c['b']) for c in cs]
-    print(colors[0])
+    size=25
+    colors=canvas.find({})
+    colorMap={}
+    t=lambda i: int(255.0*i/100.0)
+    for color in colors:
+        colorMap[(int(color['x']),int(color['y']))]=(t(color['r']),t(color['g']),t(color['b']))
+    print(colorMap)
     me=users.find_one({'ip': local_ip_address})
     profile=None
     if me is not None:
         profile=marketdb.business.find_one({'name': me['name']})
         print(profile)
-    return render_template('canvas.html',colors=colors,x=range(size),y=range(size),size=size,user=me,profile=profile) 
+    return render_template('canvas.html',colors=colorMap,x=range(size),y=range(size),size=size,user=me,profile=profile) 
     
 @app.route('/market', methods=['GET'])
 def viewMarket():
