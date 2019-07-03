@@ -46,17 +46,23 @@
   answer: Cheese
   reward: 1
 - prompt: |
+
     Word association: find a word that associates with the following sets of words.
+
     Glasses, screen, day
   answer: Sun
   reward: 2
 - prompt: |
+
     Word association: find a word that associates with the following sets of words.
+
     Cream, cube, cap
   answer: Ice
   reward: 1
 - prompt: |
+
     Word association: find a word that associates with the following sets of words.
+
     Knife, fly, cup
   answer: Butter
   reward: 1
@@ -86,6 +92,7 @@
     3 + 3 = 96
     4 + 4 = 168
     5 + 5 = 2510
+
     Then:
     6 + 6 = ?
   answer: 3612
