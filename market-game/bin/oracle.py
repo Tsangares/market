@@ -24,8 +24,9 @@ else issubclass(type(answer),dict):
 print("That is %s!\n"%str(correct).lower())
 if correct:
     me=getProfile()
-    print("\nYou have earned %s Creativity!"%question['reward'])
-    me.money+=question['reward']
-    me.save()
-    me.display()
-
+    if me is None: print ("You dont have an account!")
+    else:
+        print("\nYou have earned %s Creativity!"%question['reward'])
+        me.money+=question['reward']
+        me.save()
+        me.display()
