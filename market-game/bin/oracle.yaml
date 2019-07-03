@@ -8,3 +8,57 @@
     What is 2+2?
   answer: 4
   reward: 7
+- prompt: |
+    CARPENTER : HAMMER :: PLUMBER ::
+  answer: WRENCH
+  reward: 3
+- prompt: |
+    What’s the total number of dots on a pair of dice?
+  answer: 42
+  reward: 2
+- prompt: |
+    Which planet is the closest to Earth?
+  answer: Venus
+  reward: 2
+- prompt: |
+    What color is the circle on the Japanese national flag?
+  answer: Red
+  reward: 1
+- prompt: |
+    How many rings make up the symbol of the Olympic Games?
+  answer:
+    number: 5
+    string: five
+  reward: 1
+- prompt: |
+    What’s the colored part of the human eye called?
+  answer: Iris
+  reward: 1
+- prompt: |
+    In Charlie and the Chocolate Factory, what is Charlie’s last name?
+  answer: Bucket
+  reward: 3
+- prompt: |
+    Which planet is closest to our sun?
+  answer: Mercury
+  reward: 1
+- prompt: |
+    If you suffer from arachnophobia, which animal are you scared of?
+  answer: Spiders
+  reward: 1
+- prompt: |
+    What is the capital of California?
+  answer: Sacramento
+  reward: 1
+- prompt: |
+    Word association: find a word that associates with the following sets of words.
+    Cake, swiss, cottage
+  answer: Cheese
+  reward: 1
+- prompt: |
+    Word association: find a word that associates with the following sets of words.
+  answer:
+  reward:
+- prompt: |
+  answer:
+  reward:
