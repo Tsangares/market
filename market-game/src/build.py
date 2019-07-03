@@ -12,8 +12,12 @@ transactions=marketdb.canvas_transactions
 def buildCommodities():
     from Commodity import Commodity
     red=Commodity('red')
-    green=Commodity('red')
-    red=Commodity('red')
+    blue=Commodity('blue')
+    green=Commodity('green')
+    red.save()
+    blue.save()
+    green.save()
+buildCommodities()
         
 '''
 sc=Market("Santa Cruz", (5,0))
@@ -38,5 +42,5 @@ sf.save()
 rwc.save()
 '''
 
-test=Market.load("Santa Cruz")
-print(test,test.businesses)
+#test=Market.load("Santa Cruz")
+#print(test,test.businesses)

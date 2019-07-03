@@ -6,7 +6,7 @@ class Commodity(Saveable):
     def __init__(self,name):
         self.name=name
         self.save()
-    def data():
+    def data(self):
         return {'name': self.name }
     def save(self):
         super(Commodity,self).save(_commodity)

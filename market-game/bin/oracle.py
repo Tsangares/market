@@ -10,7 +10,7 @@ with open('oracle.yaml', 'r') as f:
     questions=oracleQuestions
 
 question=random.choice(questions)
-question=questions[6]
+#question=questions[6]
 answer=input(question['prompt']+"\n")
 corret=None
 correctAnswer=question['answer']
