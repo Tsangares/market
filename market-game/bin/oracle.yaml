@@ -97,3 +97,22 @@
     6 + 6 = ?
   answer: 3612
   reward: 5
+- prompt: |
+    How many eggs would you have if you bought half a dozen?
+  answer: 6
+  reward: 1
+- prompt: |
+    How many textbooks are on a bus of 20 children with 5 textbooks each?
+  answer: 100
+  reward: 2
+- prompt: |
+    How many quarters are there in 6 dollars?
+  answer: 24
+  reward: 3
+- prompt: |
+    If you have to wait for 10 hours, how many minutes will you be waiting?
+  answer: 600
+  reward: 2
+- prompt: |
+  answer:
+  reward: 
