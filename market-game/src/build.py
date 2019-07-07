@@ -38,6 +38,8 @@ def buildMarkets():
 
     nike.stock['Red'].quantity+=5
     nike.stock['Blue'].quantity+=5
+    adidas.stock['Red'].quantity+=5
+    adidas.stock['Green'].quantity+=5
     sc.save()
     sf.save()
     rwc.save()

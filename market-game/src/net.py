@@ -6,6 +6,7 @@ from Business import Business
 import os,random,requests
 from db import local_ip_address,users,marketdb,getProfile,getIPList,getUsers
 from flask_socketio import SocketIO,send,emit
+from subprocess import call
 app=Flask(__name__)
 api=Api(app)
 app.config['MONGO_DBNAME']='market_test'
@@ -107,4 +108,4 @@ def viewMarket():
 
 if __name__=="__main__":
     socketio.run(app,host='0.0.0.0',port='2002',debug=True)
-        
+    call(["echo", "NEW TRADE",">","/dev/stdin"])
