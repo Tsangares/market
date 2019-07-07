@@ -4,7 +4,7 @@ from flask_pymongo import PyMongo
 from Market import Market
 from Business import Business
 import os,random
-from db import local_ip_address,users,marketdb
+from db import local_ip_address,users,marketdb,getProfile
 app=Flask(__name__)
 api=Api(app)
 app.config['MONGO_DBNAME']='market_test'
@@ -21,6 +21,9 @@ def setPoint(x,y,r,g,b):
     }
     return canvas.update_one({'x': x, 'y': y}, {'$set': color},upsert=True)
 
+@app.route('/', methods=['GET'])
+def gotoCanvas():
+    return redirect("/canvas")
 @app.route('/canvas', methods=['POST'])
 def set_pixel():
     marketName=request.values.get('name')
@@ -33,8 +36,32 @@ def set_pixel():
         print(red,blue,green,x,y)
         business=Business.load(marketName)
         price=1
-        if business.quantity>=price:
-            business.quantity-=price
+        colors=[]
+        if red > 0:
+            colors.append('Red')
+        if blue > 0:
+            colors.append('Blue')
+        if green > 0:
+            colors.append('Green')
+            
+        for color in colors:
+            if business.stock[color].quantity<0:
+                print("Not enough pigment!")
+                return redirect('/canvas')
+
+        paid=False
+        for color in colors:
+            business.stock[color]-=1
+            paid=True
+            
+        if colors==[]:
+            for name,stock in business.stock.items():
+                if stock.quantity > 0:
+                    stock.quantity-=1
+                    paid=True
+                    break
+                
+        if paid:
             setPoint(x,y,red,green,blue)
             business.save()
         else:
@@ -51,13 +78,8 @@ def get_canvas():
     t=lambda i: int(255.0*i/100.0)
     for color in colors:
         colorMap[(int(color['x']),int(color['y']))]=(t(color['r']),t(color['g']),t(color['b']))
-    print(colorMap)
-    me=users.find_one({'ip': local_ip_address})
-    profile=None
-    if me is not None:
-        profile=marketdb.business.find_one({'name': me['name']})
-        print(profile)
-    return render_template('canvas.html',colors=colorMap,x=range(size),y=range(size),size=size,user=me,profile=profile) 
+    profile=getProfile()
+    return render_template('canvas.html',colors=colorMap,x=range(size),y=range(size),size=size,profile=profile) 
     
 @app.route('/market', methods=['GET'])
 def viewMarket():

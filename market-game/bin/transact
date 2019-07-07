@@ -9,6 +9,7 @@ from Business import Business
 from db import getProfile
 parser = argparse.ArgumentParser(description='Utility used to make a trasaction between you and another business.')
 parser.add_argument('name', metavar='name', type=str, nargs=1, help="The name of a business you want to transact with.")
+parser.add_argument('color', metavar='color', type=str, nargs=1, help="The color you want to trader.")
 parser.add_argument('quantity', metavar='quantity', type=int, nargs=1, help="The number of units you want to buy/sell.")
 
 args=parser.parse_args()
@@ -18,7 +19,8 @@ them=Business.load(args.name[0])
 if me is None or them is None:
     print("There is a problem with this transaction.")
 else:
-    print(me,them)
-    Business.transact(me,them,args.quantity[0])
+    color=args.color[0].title()
+    quantity=args.quantity[0]
+    Business.transact(me,them,me.stock[color].commodity,quantity)
     me.save()
     them.save()

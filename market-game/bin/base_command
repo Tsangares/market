@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+
+## - For testing - ##
+import sys
+sys.path.insert(0,'../src')
+## - - - ### - - - ##
+import argparse,yaml
+from Market import Market
+from Business import Business
+parser = argparse.ArgumentParser(description='Utility.')
+parser.add_argument('first', metavar='first', type=str, nargs=1, help="First argument.")
+args=parser.parse_args()
+

@@ -9,7 +9,7 @@
   <body>
     {% if me!=None and profile!=None%}
     <div id="color-picker">
-      <span>Hello {{user['name']}}</span>
+      <span>Hello {{profile.name}}</span>
       <span>You have {{profile['quantity']}} paint!</span>
       <div id="example-pixel">
 	Selected Pixel at (<span id="x-holder"></span>,<span id="y-holder"></span>)
@@ -18,9 +18,21 @@
 	<input type='text' name="name" value="{{profile['name']}}" style="display:none"></input>
 	<input id="x-value" type='text' name="x" style="display:none"></input>
 	<input id="y-value" type='text' name="y" style="display:none"></input>
+	{% if profile.stock['Red'].quantity > 0 %}
 	<input required id="red" class="color" name="red" type='text' placeholder="% red"></input>
+	{% else %}
+	<input required id="red" class="color" name="red" type='text' placeholder="% red" value="0" hidden></input>
+	{% endif %}
+	{% if profile.stock['Green'].quantity > 0 %}
 	<input required id="green" class="color" name="green" type='text' placeholder="% green"></input>
+	{% else %}
+	<input required id="green" class="color" name="green" type='text' placeholder="% green" value="0" hidden></input>
+	{% endif %}
+	{% if profile.stock['Blue'].quantity > 0 %}
 	<input required id="blue" class="color" name="blue" type='text' placeholder="% blue"></input>
+	{% else %}
+	<input required id="blue" class="color" name="blue" type='text' placeholder="% blue" value="0" hidden></input>
+	{% endif %}
 	{% if True %}
 	<input type="submit" value="Buy Pixel"></input>
 	{% endif %}

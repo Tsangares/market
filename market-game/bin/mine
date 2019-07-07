@@ -7,7 +7,7 @@ from pymongo import MongoClient
 from getpass import getpass
 from Market import Market
 from Business import Business
-import time
+import time,math,random
 from numpy.random import normal
 from db import getProfile
 parser = argparse.ArgumentParser(description='Utility used to make a trasaction between you and another business.')
@@ -17,6 +17,9 @@ args=parser.parse_args()
 
 print("Retreieving profile...")
 me=getProfile()
+commodity=me.market.exports[0]
+if not issubclass(type(commodity),str):
+    commodity=name.name
 
 def mine():
     maxTime=30
@@ -29,20 +32,26 @@ def mine():
     if scale < 0: scale=0
     duration=-1
     while duration<minTime or duration>maxTime:
-        duration=normal(width*scale+minTime,scale)
+        duration=normal(width*scale+minTime,2*scale)
         #duration=width*scale+minTime
-    steps=3
-    print("Duration %.02f sec"%duration)
-    for i in range(steps):
-        print("."*(i+1))
+    steps=math.ceil(1.5*duration)
+    print("Duration %.02f sec\n"%duration)
+    char=str(random.choice(['Þ','.','*','-','Ø','o','#','!','^','|']))
+    direction=random.choice(['>','<','^'])
+    allSteps=range(steps)
+    if random.choice([True,False]):
+        allSteps=reversed(allSteps)
+    for i in allSteps:
+        print(("{:%s%ss}"%(direction,steps)).format(char*(i+1)))
         time.sleep(duration/steps)
+    print("\n")
     if money>maxMoney:
         print("The most money you can spend on this is %s."%maxMoney)
         money=maxMoney
-    print("Spend %s money."%money)
+    print("You spent $%.02f to save %d secconds."%(money,maxTime-duration))
     me.spend(money)
-    print("Added 1 to your profile.")
-    me.quantity+=1
+    print("Added 1 %s dye to your profile.\n"%commodity)
+    me.stock[commodity].quantity+=1
     me.save()
 
 if args.repeat:
@@ -51,4 +60,4 @@ if args.repeat:
         print("Repeating!")
 else:
     mine()
-    me.display()
+    me.display(commodity)

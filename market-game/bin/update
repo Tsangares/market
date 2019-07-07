@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+import sys
+sys.path.insert(0,'../src')
+
+import argparse
+from pymongo import MongoClient
+from getpass import getpass
+from Market import Market
+from Business import Business
+from db import getProfile
+
+parser = argparse.ArgumentParser(description='Utility to update the sell or buy price on your account.\n The buy price is the amount you are willing to buy a pigment at.\nThe sell price is the amount you are willing to sell a pigment at.')
+parser.add_argument('type', type=str, choices=['buy','sell'],help="Are you updating the sell price or the bid price.")
+parser.add_argument('pigment', choices=['red','green','blue'],type=str, help="Which commodity are you trying to update?")
+parser.add_argument('price', type=float, nargs=1, help="The new value you want to set.")
+args=parser.parse_args()
+
+print("Updating your configuration.")
+profile=getProfile()
+if args.type == 'buy':
+    profile.stock[args.pigment.title()].buyPrice=args.price[0]
+elif args.type == 'sell':
+    profile.stock[args.pigment.title()].sellPrice=args.price[0]
+profile.save()
+profile.display(args.pigment.title())

@@ -3,20 +3,23 @@ from db import marketdb
 from Saveable import Saveable
 _market=marketdb.market
 class Market(Saveable):
-    def __init__(self,name,position=(0,0)):
+    def __init__(self,name,position=(0,0),exports=[],_id=None):
         super(Market,self).__init__()
+        self._id=_id
+        if self._id is None:
+            self._id=Saveable.getId(name,_market)
         self.name=name
-        self.businesses=[]
         self.position=position
-        self._id=Saveable.getId(name,_market)
+        self.exports=exports
+        self.businesses=[]
 
-    def load(d):
-        from Business import Business
+    def load(d,deep=True):
         d=Saveable.load(d,_market)
-        market=Market(d['name'],d['position'])
-        market._id=d['_id']
-        for business in d['businesses']:
-            Business.load(business,market)
+        market=Market(d['name'],d['position'],d['exports'],d['_id'])
+        if deep:
+            from Business import Business
+            for business in d['businesses']:
+                Business.load(business,market)
         return market
     
     def save(self):
@@ -28,6 +31,7 @@ class Market(Saveable):
             'name': self.name,
             'businesses': [b._id for b in self.businesses],
             'position': self.position,
+            'exports': [e.name for e in self.exports],
         }
     def __repr__(self):
         return self.name
