@@ -4,9 +4,10 @@ from flask_pymongo import PyMongo
 from Market import Market
 from Business import Business
 import os,random,requests
-from db import local_ip_address,users,marketdb,getProfile,getIPList,getUsers
+from db import local_ip_address,users,marketdb,getProfile,getIPList,getUsers,broadcast
 from flask_socketio import SocketIO,send,emit
 from subprocess import call
+import json
 app=Flask(__name__)
 api=Api(app)
 app.config['MONGO_DBNAME']='market_test'
@@ -25,9 +26,26 @@ def setPoint(x,y,r,g,b):
         'g': g,
         'b': b,
     }
-    emit('new',color,namespace='/', broadcast=True)
+    broadcast('recievePoint',json.dumps(color))
     return canvas.update_one({'x': x, 'y': y}, {'$set': color},upsert=True)
 
+@app.route('/recievePoint', methods=['POST'])
+def new_update():
+    msg=json.loads(request.values.get('message'))
+    x=msg['x']
+    y=msg['y']
+    r=msg['r']
+    g=msg['g']
+    b=msg['b']
+    color={
+        'x': x,
+        'y': y,
+        'r': r,
+        'g': g,
+        'b': b,
+    }
+    emit('new',color,namespace='/', broadcast=True)
+    return "Success"
 
 @app.route('/', methods=['GET'])
 def gotoCanvas():
@@ -108,4 +126,3 @@ def viewMarket():
 
 if __name__=="__main__":
     socketio.run(app,host='0.0.0.0',port='2002',debug=True)
-    call(["echo", "NEW TRADE",">","/dev/stdin"])

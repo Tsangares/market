@@ -5,6 +5,7 @@ import socket,requests
 from multiprocessing import Pool
 from requests.exceptions import ConnectionError
 from itertools import repeat
+import json
 local_ip_address=socket.gethostbyname(socket.gethostname())
 users=marketdb.users
 
@@ -37,7 +38,6 @@ def broadcast(endpoint,message):
     with Pool(len(ips)) as pool:
         args=zip(repeat(endpoint),repeat(message),ips)
         res=pool.starmap(emit,args)
-    print(res)
         
 def getProfile():
     user=users.find_one({'ip': local_ip_address})
@@ -47,4 +47,11 @@ def getProfile():
     else: return None
 
 if __name__=='__main__':
-    print(broadcast('recieve','hey'))
+    color={
+        'x': 0,
+        'y': 0,
+        'r': 0,
+        'g': 0,
+        'b': 0,
+    }
+    broadcast('recievePoint',json.dumps(color))
