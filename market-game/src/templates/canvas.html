@@ -4,7 +4,8 @@
     <link href="https://fonts.googleapis.com/css?family=Arvo|Lato|Literata|Montserrat|Raleway&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" type="text/css" href="/static/base.css">
     <link rel="stylesheet" type="text/css" href="/static/canvas.css">
-    <script src="/static/jquery.js"></script> 
+    <script src="/static/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
   </head>
   <body>
     {% if me!=None and profile!=None%}
@@ -44,7 +45,7 @@
 	<div class="row">
 	  {% for i in x %}
 	  {% set r,g,b = colors[(i,j)] %}
-	  <div class="column pixel" x="{{i}}" y="{{j}}" style="background-color: rgb({{r}},{{g}},{{b}})" >
+	  <div id="pix-{{i}}-{{j}}" class="column pixel" x="{{i}}" y="{{j}}" style="background-color: rgb({{r}},{{g}},{{b}})" >
 	  </div>
 	  {% endfor %}
 	</div>
@@ -59,3 +60,4 @@
     <script src="/static/canvas.js"></script> 
   </body>
 </html>
+ 

@@ -36,8 +36,8 @@ def buildMarkets():
     puma=Business('Puma',rwc,200)
     vans=Business('Vans',sf,200)
 
-    nike.stock['Red'].quantity+=1
-    nike.stock['Blue'].quantity+=1
+    nike.stock['Red'].quantity+=5
+    nike.stock['Blue'].quantity+=5
     sc.save()
     sf.save()
     rwc.save()
