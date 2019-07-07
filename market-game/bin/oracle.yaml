@@ -114,5 +114,38 @@
   answer: 600
   reward: 2
 - prompt: |
-  answer:
-  reward: 
+    What is next in this sequence? JFMAMJJASON
+  answer: D
+  reward: 5
+- prompt: |
+    65-42=
+  answer: 22
+  reward: 1
+- prompt: |
+    87+56=
+  answer: 143
+  reward: 1
+- prompt: |
+    A polygon with 8 sides is called an...
+  answer: octagon
+  reward: 1
+- prompt: |
+    What is the square root of 36?
+  answer: 5
+  reward: 2
+- prompt: |
+    Which is greater -50 or 2?
+  answer: 2
+  reward: 2
+- prompt: |
+    What is 25+23=
+  answer: 48
+  reward: 1
+- prompt: |
+    What subject does Alyssa teach during the school year?
+  answer: Math
+  reward: 1
+- prompt: |
+    87+56=
+  answer: 143
+  reward: 1
