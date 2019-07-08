@@ -10,11 +10,17 @@ with open('oracle.yaml', 'r') as f:
     questions=oracleQuestions
 
 question=random.choice(questions)
-#question=questions[19]
+#question=questions[0]
 answer=input(question['prompt']+"\n")
 corret=None
-correctAnswer=question['answer']
-if issubclass(type(correctAnswer),dict):
+try:
+    question['no_answer']
+    correct=True
+except:
+    correctAnswer=question['answer']
+if correct==True:
+    pass
+elif issubclass(type(correctAnswer),dict):
     try:
         correct=float(answer)==float(correctAnswer['number'])
     except:

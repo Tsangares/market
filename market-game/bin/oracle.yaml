@@ -1,4 +1,8 @@
 - prompt: |
+    Name one person you've met today.
+  no_answer: True
+  reward: 1
+- prompt: |
     CARPENTER : HAMMER :: PLUMBER ::
   answer: WRENCH
   reward: 3
@@ -146,6 +150,82 @@
   answer: Math
   reward: 1
 - prompt: |
-    87+56=
-  answer: 143
+    What is 5*5=
+  answer: 25
+  reward: 1
+- prompt: |
+    21/7=
+  answer: 3
+  reward: 1
+- prompt: |
+    How many seas are there in the world?
+  answer: 7
+  reward: 1
+- prompt: |
+    What ocean borders the coast of California?
+  answer: Pacific Ocean
+  reward: 1
+- prompt: |
+    What city is The Girls' Middle School in?
+  answer: Palo Alto
+  reward: 1
+- prompt: |
+    A caterpillar grows and develops into a...
+  answer: Butterfly
+  reward: 1
+- prompt: |
+    What is the tallest animal in the world?
+  answer: Giraffe
+  reward: 1
+- prompt: |
+    True or false: A lion is a herbivore.
+  answer: false
+  reward: 1
+- prompt: |
+    Name the world's fastest land animal
+  answer: Cheetah
+  reward: 1
+- prompt: |
+    True or false: A lion is a herbivore.
+  answer: false
+  reward: 1
+- prompt: |
+    In Aladdin, Rajah is the pet Tiger of whom?
+  answer: Jasmine
+  reward: 2
+- prompt: |
+    Ursula belonged to which Disney movie?
+  answer: The Little Mermaid
+  reward: 1
+- prompt: |
+    Queen Elsa is a character of which Disney film?
+  answer: Frozen
+  reward: 1
+- prompt: |
+    Which Disney film was set in the Islands of Polynesia?
+  answer: Moana
+  reward: 1
+- prompt: |
+    What is the capital of the United States?
+  answer: Washington D.C.
+  reward: 2
+- prompt: |
+    What state borders California to the north?
+  answer: Oregon
+  reward: 2
+- prompt: |
+    The state flower of California is what?
+  answer: The poppy
+  reward: 1
+- prompt: |
+    A polygon with 4 sides is called a...
+  answer: square
+  reward: 1
+- prompt: |
+    What does GMS stand for?
+  answer: The Girls Middle School
+  reward: 1
+- prompt: |
+    What is your favorite subject at school?
+  no_answer: True
   reward: 1
